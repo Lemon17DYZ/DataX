@@ -1,0 +1,17 @@
+{
+    "name": "hdfswriter",
+    "parameter": {
+        "defaultFS": "",
+        "fileType": "",
+        "path": "",
+        "fileName": "",
+        "jdbc_url": "",
+        "username": "",
+        "password": "",
+        "table_name": "",
+        "column": [],
+        "writeMode": "",
+        "fieldDelimiter": "",
+        "compress":""
+    }
+}
