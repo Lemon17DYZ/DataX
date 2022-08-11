@@ -1,5 +1,5 @@
 {
-    "name": "hdfswriter",
+    "name": "hivewriter",
     "parameter": {
         "defaultFS": "",
         "fileType": "",
