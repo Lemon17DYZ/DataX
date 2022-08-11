@@ -200,6 +200,7 @@ public  class HiveHelper {
     public void addPartition(String filePath,String table_name,String jdbc_url,String username,String password){
         String datetime =filePath.substring(filePath.length()-8);
         String drivername = "org.apache.hive.jdbc.HiveDriver";
+        Connection connection=null;
         try {
             Class.forName(drivername);
         } catch (ClassNotFoundException e) {
@@ -207,8 +208,8 @@ public  class HiveHelper {
             System.exit(1);
         }
         try {
-            Connection con = DriverManager.getConnection(jdbc_url, username, password);
-            if (con != null) {
+            connection = DriverManager.getConnection(jdbc_url, username, password);
+            if (connection != null) {
                 LOG.info(String.format("hive连接成功"));
             } else {
                 LOG.info(String.format("hive连接失败"));
@@ -216,7 +217,7 @@ public  class HiveHelper {
             String sql;
             sql = "alter table " + table_name + " add partition (dt=" +datetime+ ")";
             System.out.println("Running: " + sql);
-           PreparedStatement preparedStatement = con.prepareStatement(sql);
+           PreparedStatement preparedStatement = connection.prepareStatement(sql);
             preparedStatement.execute();
             int updateCount = preparedStatement.getUpdateCount();
             if (updateCount != 0){
@@ -224,9 +225,17 @@ public  class HiveHelper {
             }else {
                 LOG.info(String.format("分区创建失败"));
             }
-
+            connection.close();
         } catch (SQLException se) {
             se.printStackTrace();
+        }finally {
+            try {
+                if (connection != null){
+                    connection.close();
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
         }
     }
     public void deleteFiles(Path[] paths){
