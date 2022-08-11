@@ -2,5 +2,5 @@
     "name": "hiveWriter",
     "class": "com.alibaba.datax.plugin.writer.hiveWriter.HiveWriter",
     "description": "useScene: prod. mechanism: via FileSystem connect HDFS write data concurrent.",
-    "developer": "alibaba"
+    "developer": "yuzhe"
 }

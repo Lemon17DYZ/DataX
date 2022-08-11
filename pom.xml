@@ -104,6 +104,7 @@
         <module>kuduwriter</module>
         <module>ftpwriter</module>
         <module>hdfswriter</module>
+        <module>hivewriter</module>
         <module>txtfilewriter</module>
         <module>streamwriter</module>
 
